@@ -1,0 +1,27 @@
+<div class="container">
+
+
+  <div class="list-group">
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+    <h1><%= @task.title %></h1>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+    <p><%= @task.details %></p>
+    </div>
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3 align-items-center">
+    <input type="checkbox" name="" id="" <%= "checked" if @task.completed %>>
+    <% if @task.completed %>
+      <p>This task is completed</p>
+    <% else %>
+      <p>This task is not yet completed</p>
+    <% end %>
+    </div>
+  </div>
+
+
+  <%= link_to "Edit this task", edit_task_path(@task), class: "btn btn-primary" %>
+  <%= link_to "Delete this task", task_path(@task), class: "btn btn-danger", data: {
+    turbo_method: :delete, turbo_confirm: "Are you sure?"
+  }  %>
+  <%= link_to "Back to List", tasks_path, class: "btn btn-primary" %>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>My tasks</h1>
+
+  <div class="list-group">
+    <% @tasks.each do |task| %>
+    <div class="list-group-item list-group-item-action d-flex gap-3 py-3">
+        <%= form_with model: task, class: "forms", method: :patch do |form| %>
+          <%= form.check_box :completed, class: "check" %>
+        <% end %>
+        <%= link_to task.title, task_path(task)  %>
+    </div>
+    <% end %>
+  </div>
+
+
+  <%= link_to "Add an item", new_task_path, class: "btn btn-primary" %>
+</div>
+
+
+
+
+<script>
+  const forms = document.querySelectorAll(".forms")
+
+  forms.forEach( (form)=> {
+    form.addEventListener("click", () => {
+      form.submit()
+    })
+  })
+</script>
